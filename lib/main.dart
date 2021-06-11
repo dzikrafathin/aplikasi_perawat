@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/bloc.dart';
 import 'ui/ui.dart';
+import 'api/api.dart';
 
 void main() {
   runApp(AppPerawat());
@@ -26,9 +27,12 @@ class _BlocProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(providers: [
+      BlocProvider<LoginBloc>(
+          create: (context) => LoginBloc(authApi: AuthApi())),
       BlocProvider<AuthBloc>(
           create: (context) =>
-              AuthBloc(TidakDiketahuiState())..add(InisialisasiAwalEvent()))
+              AuthBloc(loginBloc: BlocProvider.of<LoginBloc>(context))
+                ..add(InisialisasiAwalEvent()))
     ], child: _MainApp());
   }
 }
@@ -52,7 +56,6 @@ class _MainApp extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => HalamanDashboard()),
                     (route) => false);
               } else if (state is BelumLoginState) {
-                print('OKE');
                 _navigator.pushAndRemoveUntil<void>(
                     MaterialPageRoute(
                         builder: (context) => HalamanSelamatDatang()),
