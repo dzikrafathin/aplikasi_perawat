@@ -5,18 +5,12 @@ abstract class AuthEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class ProsesLoginEvent extends AuthEvent {}
-
-class GagalLoginEvent extends AuthEvent {}
+class InisialisasiAwalEvent extends AuthEvent {}
 
 class BerhasilLoginEvent extends AuthEvent {
   final String token;
   const BerhasilLoginEvent(this.token);
   List<Object> get props => [token];
 }
-
-class ProsesLogoutEvent extends AuthEvent {}
-
-class GagalLogoutEvent extends AuthEvent {}
 
 class BerhasilLogoutEvent extends AuthEvent {}

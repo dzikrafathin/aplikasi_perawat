@@ -8,22 +8,12 @@ abstract class AuthState extends Equatable {
   List<Object> get props => [token];
 }
 
+class TidakDiketahuiState extends AuthState {}
+
 class BelumLoginState extends AuthState {
   const BelumLoginState() : super(token: '');
 }
 
 class SudahLoginState extends AuthState {
   const SudahLoginState({String token = ''}) : super(token: token);
-}
-
-class GagalLoginState extends AuthState {
-  const GagalLoginState() : super(token: '');
-}
-
-class ProsesLoginState extends AuthState {
-  const ProsesLoginState() : super(token: '');
-}
-
-class ProsesLogoutState extends AuthState {
-  const ProsesLogoutState({String token = ''}) : super(token: token);
 }
