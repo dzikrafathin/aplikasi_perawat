@@ -21,7 +21,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     } else if (event is LoginPasswordBerubahEvent) {
       yield _mapLoginPasswordBerubahEventToState(event, state);
     } else if (event is LoginKirimEvent) {
-      yield await _mapLoginKirimEventToState(state);
+      yield* _mapLoginKirimEventToState(state);
     }
   }
 
@@ -41,12 +41,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         loginModel: state.loginModel.copyWith(password: event.password));
   }
 
-  Future<LoginState> _mapLoginKirimEventToState(LoginState state) async {
+  Stream<LoginState> _mapLoginKirimEventToState(LoginState state) async* {
+    yield state.copyWith(status: LoginStatus.proses);
     try {
       final token = await _authApi.login(state.loginModel);
-      return state.copyWith(status: LoginStatus.berhasil, token: token);
+      yield state.copyWith(status: LoginStatus.berhasil, token: token);
     } on DioError catch (e) {
-      return state.copyWith(
+      yield state.copyWith(
           status: LoginStatus.gagal,
           loginErrorModel:
               LoginErrorModel.fromJson(e.response!.data['errors']));

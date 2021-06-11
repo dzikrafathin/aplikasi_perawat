@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:aplikasi_perawat/api/api.dart';
 import '../../bloc.dart';
 
 part 'auth_event.dart';
@@ -24,14 +25,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     if (event is InisialisasiAwalEvent) {
       yield await _mapInisialisasiAwalEventToState(state);
     } else if (event is BerhasilLoginEvent) {
-      yield _mapBerhasilLoginEventToState(event, state);
+      yield await _mapBerhasilLoginEventToState(event, state);
     }
   }
 
-  SudahLoginState _mapBerhasilLoginEventToState(
-      BerhasilLoginEvent event, AuthState state) {
+  Future<SudahLoginState> _mapBerhasilLoginEventToState(
+      BerhasilLoginEvent event, AuthState state) async {
     if (state is BelumLoginState) {
-      return SudahLoginState(token: event.token);
+      final token = event.token;
+      final storage = FlutterSecureStorage();
+      await storage.write(key: 'token', value: token);
+      api.options.headers['Authorization'] = 'Bearer $token';
+      return SudahLoginState(token: token);
     } else {
       throw Exception('Perubahan tidak valid! Seharusnya state Belum Login');
     }
@@ -42,6 +47,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final storage = FlutterSecureStorage();
       final token = await storage.read(key: 'token');
       if (token != null) {
+        api.options.headers['Authorization'] = 'Bearer $token';
         return SudahLoginState(token: token);
       } else {
         return BelumLoginState();
