@@ -13,4 +13,14 @@ class AuthApi {
       return '';
     }
   }
+
+  Future<String> register(RegisterModel registerModel) async {
+    final hasil = await api.post('register', data: jsonEncode(registerModel));
+    if (hasil.statusCode == 201) {
+      final token = hasil.data['data']['token'];
+      return token;
+    } else {
+      return '';
+    }
+  }
 }

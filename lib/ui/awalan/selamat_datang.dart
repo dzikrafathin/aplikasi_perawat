@@ -34,7 +34,12 @@ class HalamanSelamatDatang extends StatelessWidget {
                   },
                   child: Text('Login')),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => HalamanRegister()));
+                },
                 child: Text('Register'),
                 style: ButtonStyle(
                     backgroundColor:

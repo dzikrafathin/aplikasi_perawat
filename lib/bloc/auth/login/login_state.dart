@@ -25,5 +25,5 @@ class LoginState extends Equatable {
       this.status = LoginStatus.mengisi,
       this.loginModel = const LoginModel(),
       this.loginErrorModel = const LoginErrorModel()});
-  List<Object> get props => [loginModel, status, loginErrorModel];
+  List<Object> get props => [loginModel, status, loginErrorModel, token];
 }

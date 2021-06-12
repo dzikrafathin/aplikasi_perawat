@@ -29,6 +29,8 @@ class _BlocProvider extends StatelessWidget {
     return MultiBlocProvider(providers: [
       BlocProvider<LoginBloc>(
           create: (context) => LoginBloc(authApi: AuthApi())),
+      BlocProvider<RegisterBloc>(
+          create: (context) => RegisterBloc(authApi: AuthApi())),
       BlocProvider<AuthBloc>(
           create: (context) =>
               AuthBloc(loginBloc: BlocProvider.of<LoginBloc>(context))
