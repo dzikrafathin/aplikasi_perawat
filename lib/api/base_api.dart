@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-final String baseUrl = 'http://10.0.2.2:8000/api/perawat/';
+final String baseUrl = 'http://192.168.42.113:8000/api/perawat/';
 final Dio api = Dio(BaseOptions(
     baseUrl: baseUrl,
     contentType: Headers.jsonContentType,

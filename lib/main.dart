@@ -34,12 +34,13 @@ class _BlocProvider extends StatelessWidget {
       BlocProvider<AuthBloc>(
           create: (context) =>
               AuthBloc(loginBloc: BlocProvider.of<LoginBloc>(context))
-                ..add(InisialisasiAwalEvent()))
-    ], child: _MainApp());
+                ..add(InisialisasiAwalEvent())),
+      BlocProvider<NavigasiBloc>(create: (context) => NavigasiBloc())
+    ], child: _AuthLogic());
   }
 }
 
-class _MainApp extends StatelessWidget {
+class _AuthLogic extends StatelessWidget {
   final _navigatorKey = GlobalKey<NavigatorState>();
 
   NavigatorState get _navigator => _navigatorKey.currentState!;
@@ -55,7 +56,7 @@ class _MainApp extends StatelessWidget {
             listener: (context, state) {
               if (state is SudahLoginState) {
                 _navigator.pushAndRemoveUntil<void>(
-                    MaterialPageRoute(builder: (context) => HalamanDashboard()),
+                    MaterialPageRoute(builder: (context) => HalamanNavigasi()),
                     (route) => false);
               } else if (state is BelumLoginState) {
                 _navigator.pushAndRemoveUntil<void>(
