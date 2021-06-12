@@ -56,7 +56,7 @@ class _AuthLogic extends StatelessWidget {
             listener: (context, state) {
               if (state is SudahLoginState) {
                 _navigator.pushAndRemoveUntil<void>(
-                    MaterialPageRoute(builder: (context) => HalamanNavigasi()),
+                    MaterialPageRoute(builder: (context) => HalamanDashboard()),
                     (route) => false);
               } else if (state is BelumLoginState) {
                 _navigator.pushAndRemoveUntil<void>(
