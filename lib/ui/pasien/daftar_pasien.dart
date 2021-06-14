@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:aplikasi_perawat/bloc/bloc.dart';
 import 'package:aplikasi_perawat/api/api.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'pasien.dart';
 
 class HalamanDaftarPasien extends StatelessWidget {
   @override
@@ -22,8 +23,14 @@ class _ScaffoldDaftarPasienState extends State<_ScaffoldDaftarPasien> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => HalamanTambahPasien()));
+        },
+        child: Icon(Icons.add),
+      ),
       appBar: AppBar(
-        //title: Text('Daftar Pasien'),
         title: sedangMencari ? _KotakPencarian() : Text('Daftar Pasien'),
         actions: [
           IconButton(
