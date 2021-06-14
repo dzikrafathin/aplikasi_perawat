@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import '../api.dart';
 import '../../model/model.dart';
 
@@ -11,6 +13,16 @@ class PasienApi {
       return daftar;
     } else {
       return [];
+    }
+  }
+
+  Future<PasienModel> storePasien(PasienModel pasienModel) async {
+    final hasil = await api.post('pasien', data: jsonEncode(pasienModel));
+    if (hasil.statusCode == 201) {
+      PasienModel pasienHasil = PasienModel.fromJson(hasil.data['data']);
+      return pasienHasil;
+    } else {
+      return PasienModel();
     }
   }
 }
