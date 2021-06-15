@@ -25,4 +25,13 @@ class PasienApi {
       return PasienModel();
     }
   }
+
+  Future<bool> destroyPasien(int idPasien) async {
+    final hasil = await api.delete('pasien/$idPasien');
+    if (hasil.statusCode == 201) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
