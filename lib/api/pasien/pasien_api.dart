@@ -26,6 +26,28 @@ class PasienApi {
     }
   }
 
+  Future<PasienModel> updatePasien(
+      int idPasien, PasienModel pasienModel) async {
+    final hasil =
+        await api.put('pasien/$idPasien', data: jsonEncode(pasienModel));
+    if (hasil.statusCode == 201) {
+      PasienModel pasienHasil = PasienModel.fromJson(hasil.data['data']);
+      return pasienHasil;
+    } else {
+      return PasienModel();
+    }
+  }
+
+  Future<PasienModel> showPasien(int idPasien) async {
+    final hasil = await api.get('pasien/$idPasien');
+    if (hasil.statusCode == 201) {
+      PasienModel pasienHasil = PasienModel.fromJson(hasil.data['data']);
+      return pasienHasil;
+    } else {
+      return PasienModel();
+    }
+  }
+
   Future<bool> destroyPasien(int idPasien) async {
     final hasil = await api.delete('pasien/$idPasien');
     if (hasil.statusCode == 201) {

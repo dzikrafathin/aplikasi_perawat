@@ -112,7 +112,17 @@ class _ItemPasien extends StatelessWidget {
       subtitle: Text(pasien.noRm),
       trailing: Wrap(
         children: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
+          IconButton(
+              onPressed: () async {
+                await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            HalamanUbahPasien(idPasien: pasien.id)));
+                BlocProvider.of<DaftarPasienBloc>(context)
+                    .add(MuatDaftarPasienEvent());
+              },
+              icon: Icon(Icons.edit)),
           IconButton(
               onPressed: () async {
                 await _konfirmasiHapus(context);
