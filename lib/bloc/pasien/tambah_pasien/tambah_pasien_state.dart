@@ -11,5 +11,15 @@ class TambahPasienState extends Equatable {
       this.pasienBaru = const PasienModel(),
       this.pasienBaruError = const PasienErrorModel()});
 
+  TambahPasienState copyWith(
+      {TambahPasienStatus? status,
+      PasienModel? pasienBaru,
+      PasienErrorModel? pasienBaruError}) {
+    return TambahPasienState(
+        status: status ?? this.status,
+        pasienBaru: pasienBaru ?? this.pasienBaru,
+        pasienBaruError: pasienBaruError ?? this.pasienBaruError);
+  }
+
   List<Object> get props => [status, pasienBaru, pasienBaruError];
 }

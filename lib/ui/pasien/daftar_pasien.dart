@@ -24,9 +24,11 @@ class _ScaffoldDaftarPasienState extends State<_ScaffoldDaftarPasien> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context,
+        onPressed: () async {
+          await Navigator.push(context,
               MaterialPageRoute(builder: (context) => HalamanTambahPasien()));
+          BlocProvider.of<DaftarPasienBloc>(context)
+              .add(MuatDaftarPasienEvent());
         },
         child: Icon(Icons.add),
       ),

@@ -105,14 +105,17 @@ class PasienErrorModel extends Equatable {
 
   factory PasienErrorModel.fromJson(Map<String, dynamic> json) {
     return PasienErrorModel(
-        nama: json['nama'],
-        email: json['email'],
-        jenisKelamin: json['jenis_kelamin'],
-        noRm: json['no_rm'],
-        noHp: json['no_hp'],
-        tempatLahir: json['tempat_lahir'],
-        tanggalLahir: json['tanggal_lahir'],
-        alamat: json['alamat']);
+        nama: json['nama'] != null ? json['nama'].join() : '',
+        email: json['email'] != null ? json['email'].join() : '',
+        jenisKelamin:
+            json['jenis_kelamin'] != null ? json['jenis_kelamin'].join() : '',
+        noRm: json['no_rm'] != null ? json['no_rm'].join() : '',
+        noHp: json['no_hp'] != null ? json['no_hp'].join() : '',
+        tempatLahir:
+            json['tempat_lahir'] != null ? json['tempat_lahir'].join() : '',
+        tanggalLahir:
+            json['tanggal_lahir'] != null ? json['tanggal_lahir'].join() : '',
+        alamat: json['alamat'] != null ? json['alamat'].join() : '');
   }
 
   PasienErrorModel copyWith({
