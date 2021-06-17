@@ -4,3 +4,4 @@ export 'splash.dart';
 export 'navigasi/navigasi.dart';
 export 'profil/profil.dart';
 export 'pasien/pasien.dart';
+export 'askep/askep.dart';

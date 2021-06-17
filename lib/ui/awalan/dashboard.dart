@@ -18,7 +18,12 @@ class HalamanDashboard extends StatelessWidget {
           Row(
             children: [
               _TombolDashboard(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => HalamanBuatAskep()));
+                },
                 icon: Icons.person_add_alt,
                 text: 'Rawat Pasien Lama',
                 size: 40,
