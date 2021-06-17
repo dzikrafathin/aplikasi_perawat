@@ -20,13 +20,18 @@ class HalamanDashboard extends StatelessWidget {
               _TombolDashboard(
                 onTap: () {},
                 icon: Icons.person_add_alt,
-                text: 'Rawat Pasien Lama',
+                text: 'Rawat Pasien Baru',
                 size: 40,
               ),
               _TombolDashboard(
-                onTap: () {},
-                text: 'Rawat Pasien Baru',
-                icon: Icons.person_add,
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => HalamanDaftarAskep()));
+                },
+                text: 'Daftar Pasien Sedang Dirawat',
+                icon: Icons.personal_injury,
                 size: 40,
               ),
               // _TombolDashboard(
